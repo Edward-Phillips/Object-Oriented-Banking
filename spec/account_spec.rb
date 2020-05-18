@@ -8,4 +8,9 @@ describe Account do
     n = 500
     expect { subject.deposit(n) }.to change { subject.balance }.from(0).to(n)
   end
+  it ' should have a withdraw method that reduces the balance' do
+    n = 500
+    subject.deposit(n)
+    expect { subject.withdraw(n) }.to change { subject.balance }.from(n).to(0)
+  end
 end
