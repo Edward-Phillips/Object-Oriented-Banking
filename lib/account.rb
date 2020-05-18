@@ -19,7 +19,10 @@ class Account
 
   def withdraw(num='')
     valid_input(num)
-
+    if num > @balance
+      raise "Error: Insufficent funds"
+    end
+    
     @balance -= num
     store_transaction(-num)
   end
