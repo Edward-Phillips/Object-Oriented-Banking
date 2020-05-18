@@ -64,4 +64,8 @@ describe Account do
   it ' should not allow a withdrawal without any deposit value passed' do
     expect { subject.withdraw() }.to raise_error("Error: Invalid request")
   end
+  it ' should not allow a withdrawal greater than the account balance' do
+    n= 100
+    expect { subject.withdraw(n) }.to raise_error("Error: Insufficent funds")
+  end
 end
