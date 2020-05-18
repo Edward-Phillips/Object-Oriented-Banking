@@ -18,6 +18,7 @@ class Account
   def print_statement
     @transactions.join("\n")
   end
+  private
   def store_transaction(num)
     if num > 0
       @transactions.push("#{date} || #{num}.00 ||  || #{@balance}.00")
