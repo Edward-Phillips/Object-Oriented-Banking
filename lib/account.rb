@@ -1,23 +1,20 @@
 class Account
+  COLUMN_TITLES = "date || credit || debit || balance"
   def initialize
     @balance = 0
-    @transactions = []
+    @transactions = [COLUMN_TITLES]
   end
   def balance
     @balance
   end
   def deposit(num)
     @balance += num
-    @transactions.push(num)
+    @transactions.push("18/05/2020 || #{num} ||  || #{@balance}")
   end
   def withdraw(num)
     @balance -= num
   end
   def print_statement
-    if @transactions.length == 0
-      "date || credit || debit || balance"
-    else
-      "date || credit || debit || balance\n18/05/2020 || 500 ||  || 500"
-    end
+    @transactions.join("\n")
   end
 end
