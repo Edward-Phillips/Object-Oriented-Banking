@@ -8,7 +8,7 @@ class Account
   def balance
     @balance
   end
-  def deposit(num)
+  def deposit(num= '')
     if !num.is_a? Numeric
       raise "Error: Invalid deposit type"
     end
