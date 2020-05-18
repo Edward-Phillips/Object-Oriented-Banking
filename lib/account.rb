@@ -12,6 +12,9 @@ class Account
     if !num.is_a? Numeric
       raise "Invalid deposit type"
     end
+    if num < 0
+      raise "Error: Cannot make negative deposits"
+    end
     @balance += num
     store_transaction(num)
   end
