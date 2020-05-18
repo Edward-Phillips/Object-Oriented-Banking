@@ -23,6 +23,9 @@ class Account
     store_transaction(num)
   end
   def withdraw(num)
+    if !num.is_a? Numeric
+      raise "Error: Invalid deposit type"
+    end
     @balance -= num
     store_transaction(-num)
   end
