@@ -14,7 +14,7 @@
       <img src="./assets/0.12.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2020-05-18T14:41:57+01:00">2020-05-18T14:41:57+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2020-05-18T15:03:26+01:00">2020-05-18T15:03:26+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -30,7 +30,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.96
+         2.3
        </span>
     </span> hits/line
     )
@@ -43,8 +43,8 @@
   </div>
 
   <div class="t-line-summary">
-    <b>46</b> relevant lines,
-    <span class="green"><b>46</b> lines covered</span> and
+    <b>50</b> relevant lines,
+    <span class="green"><b>50</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed. </span>
     (<span class="green">
   100.0%
@@ -73,18 +73,18 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#0fb35915b42494bd1a301605aa6088a441a278ea" class="src_link" title="lib/account.rb">lib/account.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">32</td>
-            <td class="cell--number">22</td>
-            <td class="cell--number">22</td>
+            <td class="cell--number">37</td>
+            <td class="cell--number">26</td>
+            <td class="cell--number">26</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2.73</td>
+            <td class="cell--number">3.27</td>
             
           </tr>
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#e20853298cf27e932cc70585d961fd36b51a2b12" class="src_link" title="spec/account_spec.rb">spec/account_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">36</td>
+            <td class="cell--number">37</td>
             <td class="cell--number">24</td>
             <td class="cell--number">24</td>
             <td class="cell--number">0</td>
@@ -123,8 +123,8 @@
     
 
     <div class="t-line-summary">
-      <b>22</b> relevant lines.
-      <span class="green"><b>22</b> lines covered</span> and
+      <b>26</b> relevant lines.
+      <span class="green"><b>26</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -384,40 +384,40 @@
 
             
 
+            <code class="ruby">    amount = format_number(num.abs)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="6" data-linenumber="24">
+            <span class="hits">6</span>
+            
+
+            
+
+            <code class="ruby">    nice_balance = format_number(@balance)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="6" data-linenumber="25">
+            <span class="hits">6</span>
+            
+
+            
+
             <code class="ruby">    if num &gt; 0</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="24">
+          <li class="covered" data-hits="4" data-linenumber="26">
             <span class="hits">4</span>
             
 
             
 
-            <code class="ruby">      @transactions.push(&quot;#{date} || #{num}.00 ||  || #{@balance}.00&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="25">
-            
-            
-
-            
-
-            <code class="ruby">    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="26">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      @transactions.push(&quot;#{date} ||  || #{num.abs}.00 || #{@balance}.00&quot;)</code>
+            <code class="ruby">      @transactions.push(&quot;#{date} || #{amount} ||  || #{nice_balance}&quot;)</code>
           </li>
         </div>
       
@@ -428,12 +428,34 @@
 
             
 
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="28">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">      @transactions.push(&quot;#{date} ||  || #{amount} || #{nice_balance}&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="29">
+            
+            
+
+            
+
             <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="28">
+          <li class="never" data-hits="" data-linenumber="30">
             
             
 
@@ -444,7 +466,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="29">
+          <li class="covered" data-hits="1" data-linenumber="31">
             <span class="hits">1</span>
             
 
@@ -455,7 +477,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="30">
+          <li class="covered" data-hits="6" data-linenumber="32">
             <span class="hits">6</span>
             
 
@@ -466,7 +488,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="31">
+          <li class="never" data-hits="" data-linenumber="33">
             
             
 
@@ -477,7 +499,40 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
+          <li class="covered" data-hits="1" data-linenumber="34">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  def format_number(num)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="12" data-linenumber="35">
+            <span class="hits">12</span>
+            
+
+            
+
+            <code class="ruby">    &#39;%.2f&#39; % num</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="36">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="37">
             
             
 
@@ -591,7 +646,7 @@
 
             
 
-            <code class="ruby">      expect(subject.balance).to be_instance_of Integer</code>
+            <code class="ruby">      expect(subject.balance).to be_kind_of Numeric</code>
           </li>
         </div>
       
@@ -905,6 +960,17 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="36">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="37">
             
             
 

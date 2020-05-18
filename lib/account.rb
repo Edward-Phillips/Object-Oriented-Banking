@@ -20,13 +20,18 @@ class Account
   end
   private
   def store_transaction(num)
+    amount = format_number(num.abs)
+    nice_balance = format_number(@balance)
     if num > 0
-      @transactions.push("#{date} || #{num}.00 ||  || #{@balance}.00")
+      @transactions.push("#{date} || #{amount} ||  || #{nice_balance}")
     else
-      @transactions.push("#{date} ||  || #{num.abs}.00 || #{@balance}.00")
+      @transactions.push("#{date} ||  || #{amount} || #{nice_balance}")
     end
   end
   def date
     Time.now.strftime("%d/%m/%Y")
+  end
+  def format_number(num)
+    '%.2f' % num
   end
 end
