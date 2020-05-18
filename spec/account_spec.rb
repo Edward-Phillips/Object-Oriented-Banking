@@ -19,8 +19,14 @@ describe Account do
   describe 'statement details' do
     it ' should show a previously made deposit on the statement' do
       n = 500
-      subject.deposit(500)
+      subject.deposit(n)
       expect(subject.print_statement).to eq("date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00")
+    end
+    it ' should show a previously made withdrawal on the statement' do
+      n = 500
+      subject.deposit(n)
+      subject.withdraw(n)
+      expect(subject.print_statement).to eq("date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00\n18/05/2020 ||  || 500.00 || 0.00")
     end
   end
 end
