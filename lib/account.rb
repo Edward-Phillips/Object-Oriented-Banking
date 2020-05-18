@@ -20,9 +20,9 @@ class Account
   end
   def store_transaction(num)
     if num > 0
-      @transactions.push("18/05/2020 || #{num} ||  || #{@balance}")
+      @transactions.push("18/05/2020 || #{num}.00 ||  || #{@balance}.00")
     else
-      @transactions.push("18/05/2020 ||  || #{num} || #{@balance}")
+      @transactions.push("18/05/2020 ||  || #{num}.00 || #{@balance}.00")
     end
   end
 end
