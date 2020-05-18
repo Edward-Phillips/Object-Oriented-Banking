@@ -57,4 +57,8 @@ describe Account do
     n = -500
     expect { subject.withdraw(n) }.to raise_error("Error: Cannot make negative transaction")
   end
+  it ' should not allow withdrawals with more than 2 decimal places' do
+    n = 5.005
+    expect { subject.withdraw(n) }.to raise_error("Error: Invalid request")
+  end
 end
