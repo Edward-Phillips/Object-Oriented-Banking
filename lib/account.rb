@@ -1,5 +1,6 @@
 class Account
   COLUMN_TITLES = "date || credit || debit || balance"
+
   def initialize
     @balance = 0
     @transactions = [COLUMN_TITLES]
@@ -8,6 +9,9 @@ class Account
     @balance
   end
   def deposit(num)
+    if !num.is_a? Numeric
+      raise "Invalid deposit type"
+    end
     @balance += num
     store_transaction(num)
   end
