@@ -12,9 +12,6 @@ class Account
 
   def deposit(num= '')
     valid_input(num)
-    if num < 0
-      raise "Error: Cannot make negative transaction"
-    end
     if decimals(num) > 0
       raise "Error: Invalid request"
     end
@@ -25,9 +22,6 @@ class Account
 
   def withdraw(num)
     valid_input(num)
-    if num < 0
-      raise "Error: Cannot make negative transaction"
-    end
     @balance -= num
     store_transaction(-num)
   end
@@ -41,6 +35,9 @@ class Account
   def valid_input(num)
     if !num.is_a? Numeric
       raise "Error: Invalid request"
+    end
+    if num < 0
+      raise "Error: Cannot make negative transaction"
     end
   end
 
