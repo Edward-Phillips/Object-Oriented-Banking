@@ -16,4 +16,11 @@ describe Account do
   it 'should be able to produce a statement' do
     expect(subject.print_statement).to eq("date || credit || debit || balance")
   end
+  describe 'statement details' do
+    it ' should show a previously made deposit on the statement' do
+      n = 500
+      subject.deposit(500)
+      expect(subject.print_statement).to eq("date || credit || debit || balance\n18/05/2020 || 500 ||  || 500")
+    end
+  end
 end
