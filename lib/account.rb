@@ -5,13 +5,13 @@ class Account
     @balance = 0
     @transactions = [COLUMN_TITLES]
   end
+
   def balance
     @balance
   end
+
   def deposit(num= '')
-    if !num.is_a? Numeric
-      raise "Error: Invalid deposit type"
-    end
+    valid_input(num)
     if num < 0
       raise "Error: Cannot make negative deposits"
     end
@@ -22,17 +22,26 @@ class Account
     @balance += num
     store_transaction(num)
   end
+
   def withdraw(num)
-    if !num.is_a? Numeric
-      raise "Error: Invalid deposit type"
-    end
+    valid_input(num)
+
     @balance -= num
     store_transaction(-num)
   end
+
   def print_statement
     @transactions.join("\n")
   end
+
   private
+
+  def valid_input(num)
+    if !num.is_a? Numeric
+      raise "Error: Invalid deposit type"
+    end
+  end
+
   def decimals(num)
     decimals = 0
     number = num
@@ -42,6 +51,7 @@ class Account
     end
     return decimals
   end
+
   def store_transaction(num)
     amount = format_number(num.abs)
     nice_balance = format_number(@balance)
@@ -51,9 +61,11 @@ class Account
       @transactions.push("#{date} ||  || #{amount} || #{nice_balance}")
     end
   end
+
   def date
     Time.now.strftime("%d/%m/%Y")
   end
+
   def format_number(num)
     '%.2f' % num
   end
