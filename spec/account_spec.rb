@@ -37,5 +37,9 @@ describe Account do
     it ' should not allow non-numeric deposits' do
       expect { subject.deposit("LOADSAMONEY") }.to raise_error("Invalid deposit type")
     end
+    it ' should now allow negative deposits' do
+      n = -500
+      expect { subject.deposit(n) }.to raise_error("Error: Cannot make negative deposits")
+    end
   end
 end
