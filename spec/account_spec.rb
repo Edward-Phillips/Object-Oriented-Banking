@@ -49,4 +49,7 @@ describe Account do
       expect { subject.deposit() }.to raise_error("Error: Invalid deposit type")
     end
   end
+  it ' should not allow non-numeric withdrawals' do
+    expect { subject.withdraw("LOADSAMONEY") }.to raise_error("Error: Invalid deposit type")
+  end
 end
