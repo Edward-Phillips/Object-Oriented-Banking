@@ -15,6 +15,15 @@ class Account
     if num < 0
       raise "Error: Cannot make negative deposits"
     end
+    decimals = 0
+    number = num
+    while (number != number.to_i)
+      decimals += 1
+      number *= 10
+    end
+    if decimals > 2
+      raise "Error: Invalid deposit type"
+    end
     @balance += num
     store_transaction(num)
   end
