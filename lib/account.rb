@@ -10,7 +10,7 @@ class Account
   end
   def deposit(num)
     if !num.is_a? Numeric
-      raise "Invalid deposit type"
+      raise "Error: Invalid deposit type"
     end
     if num < 0
       raise "Error: Cannot make negative deposits"

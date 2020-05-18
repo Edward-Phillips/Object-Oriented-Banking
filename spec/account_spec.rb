@@ -35,7 +35,7 @@ describe Account do
   end
   describe ' edge cases' do
     it ' should not allow non-numeric deposits' do
-      expect { subject.deposit("LOADSAMONEY") }.to raise_error("Invalid deposit type")
+      expect { subject.deposit("LOADSAMONEY") }.to raise_error("Error: Invalid deposit type")
     end
     it ' should now allow negative deposits' do
       n = -500
