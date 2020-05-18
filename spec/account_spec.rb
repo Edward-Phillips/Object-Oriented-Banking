@@ -13,4 +13,7 @@ describe Account do
     subject.deposit(n)
     expect { subject.withdraw(n) }.to change { subject.balance }.from(n).to(0)
   end
+  it 'should be able to print a statement to the console' do
+    expect(subject.print_statement).to output('date || credit || debit || balance').to_stdout
+  end
 end
