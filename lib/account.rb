@@ -17,9 +17,9 @@ class Account
     store_transaction(num)
   end
 
-  def withdraw(num)
+  def withdraw(num='')
     valid_input(num)
-    
+
     @balance -= num
     store_transaction(-num)
   end
