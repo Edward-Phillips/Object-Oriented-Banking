@@ -22,6 +22,9 @@ class Account
 
   def withdraw(num)
     valid_input(num)
+    if decimals(num) > 0
+      raise "Error: Invalid request"
+    end
     @balance -= num
     store_transaction(-num)
   end
