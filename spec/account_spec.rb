@@ -4,7 +4,7 @@ describe Account do
 
   describe "basic account function" do
     it ' should have an account balance' do
-      expect(subject.balance).to be_instance_of Integer
+      expect(subject.balance).to be_kind_of Numeric
     end
     it ' should have a deposit method that increases the balance' do
       n = 500
@@ -33,4 +33,5 @@ describe Account do
       expect(subject.print_statement).to eq("date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00\n18/05/2020 ||  || 500.00 || 0.00")
     end
   end
+
 end
