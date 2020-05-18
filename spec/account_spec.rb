@@ -35,26 +35,26 @@ describe Account do
   end
   describe ' edge cases' do
     it ' should not allow non-numeric deposits' do
-      expect { subject.deposit("LOADSAMONEY") }.to raise_error("Error: Invalid deposit type")
+      expect { subject.deposit("LOADSAMONEY") }.to raise_error("Error: Invalid request")
     end
     it ' should not allow negative deposits' do
       n = -500
-      expect { subject.deposit(n) }.to raise_error("Error: Cannot make negative deposits")
+      expect { subject.deposit(n) }.to raise_error("Error: Cannot make negative transaction")
     end
     it ' should not allow deposits with more than 2 decimal places' do
       n = 5.005
-      expect { subject.deposit(n) }.to raise_error("Error: Invalid deposit type")
+      expect { subject.deposit(n) }.to raise_error("Error: Invalid request")
     end
     it ' should not allow a deposit without any deposit value passed' do
-      expect { subject.deposit() }.to raise_error("Error: Invalid deposit type")
+      expect { subject.deposit() }.to raise_error("Error: Invalid request")
     end
   end
 
   it ' should not allow non-numeric withdrawals' do
-    expect { subject.withdraw("LOADSAMONEY") }.to raise_error("Error: Invalid deposit type")
+    expect { subject.withdraw("LOADSAMONEY") }.to raise_error("Error: Invalid request")
   end
   it ' should not allow negative withdrawals' do
     n = -500
-    expect { subject.withdraw(n) }.to raise_error("Error: Cannot make negative deposits")
+    expect { subject.withdraw(n) }.to raise_error("Error: Cannot make negative transaction")
   end
 end
