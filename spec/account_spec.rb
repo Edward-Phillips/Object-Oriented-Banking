@@ -33,5 +33,9 @@ describe Account do
       expect(subject.print_statement).to eq("date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00\n18/05/2020 ||  || 500.00 || 0.00")
     end
   end
-
+  describe ' edge cases' do
+    it ' should not allow non-numeric deposits' do
+      expect { subject.deposit("LOADSAMONEY") }.to raise_error("Invalid deposit type")
+    end
+  end
 end
