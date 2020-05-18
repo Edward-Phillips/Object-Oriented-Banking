@@ -15,15 +15,10 @@ class Account
     if num < 0
       raise "Error: Cannot make negative deposits"
     end
-    decimals = 0
-    number = num
-    while (number != number.to_i)
-      decimals += 1
-      number *= 10
-    end
-    if decimals > 2
+    if decimals(num) > 0
       raise "Error: Invalid deposit type"
     end
+
     @balance += num
     store_transaction(num)
   end
@@ -35,6 +30,15 @@ class Account
     @transactions.join("\n")
   end
   private
+  def decimals(num)
+    decimals = 0
+    number = num
+    while (number != number.to_i)
+      decimals += 1
+      number *= 10
+    end
+    return decimals
+  end
   def store_transaction(num)
     amount = format_number(num.abs)
     nice_balance = format_number(@balance)
