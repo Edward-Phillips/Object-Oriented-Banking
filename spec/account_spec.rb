@@ -45,5 +45,8 @@ describe Account do
       n = 5.005
       expect { subject.deposit(n) }.to raise_error("Error: Invalid deposit type")
     end
+    it ' should not allow a deposit without any deposit value passed' do
+      expect { subject.deposit() }.to raise_error("Error: Invalid deposit type")
+    end
   end
 end
