@@ -2,8 +2,9 @@
 
 # this is the Transaction class, it stores the details of each transaction
 class Transaction
-  attr_reader :type
+  attr_reader :type, :date
   def initialize(type:, date:, balance:, value:)
     @type = type
+    @date = date
   end
 end
