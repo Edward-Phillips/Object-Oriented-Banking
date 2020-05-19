@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'account'
 
 describe Account do
@@ -6,10 +7,18 @@ describe Account do
       expect(subject.balance).to be_kind_of Numeric
     end
     it ' should have a deposit method that increases the balance' do
+      transaction = class_double('Transaction')
+      allow(transaction).to receive(:new).with(any_args)
+      subject = Account.new(transaction_class: transaction)
+
       n = 500
       expect { subject.deposit(n) }.to change { subject.balance }.from(0).to(n)
     end
     it ' should have a withdraw method that reduces the balance' do
+      transaction = class_double('Transaction')
+      allow(transaction).to receive(:new).with(any_args)
+      subject = Account.new(transaction_class: transaction)
+
       n = 500
       subject.deposit(n)
       expect { subject.withdraw(n) }.to change { subject.balance }.from(n).to(0)
@@ -22,14 +31,68 @@ describe Account do
 
   describe 'statement details' do
     it ' should show a previously made deposit on the statement' do
-      allow(subject).to receive(:date) {"18/05/2020"}
+      
+      transaction = class_double('Transaction')
+      date = Time.now.strftime('%d/%m/%Y')
+      tx = instance_double(
+        'Transaction', 
+        {
+          type: "credit",
+          date: date,
+          balance: "500.00",
+          value: "500.00"
+        }
+      )
+      allow(transaction).to receive(:new).with({
+        :type => "credit",
+        :date => date,
+        :balance => "500.00",
+        :value => "500.00"
+      }).and_return(tx)
+      subject = Account.new(transaction_class: transaction)
+
       n = 500
       subject.deposit(n)
-      expected_output = "date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00"
+      expected_output = "date || credit || debit || balance\n#{date} || 500.00 ||  || 500.00"
       expect(subject.print_statement).to eq(expected_output)
     end
     it ' should show a previously made withdrawal on the statement' do
       allow(subject).to receive(:date) {"18/05/2020"}
+      transaction = class_double('Transaction')
+      date = "18/05/2020"
+      tx = instance_double(
+        'Transaction', 
+        {
+          type: "credit",
+          date: date,
+          balance: "500.00",
+          value: "500.00"
+        }
+      )
+      tx2 = instance_double(
+        'Transaction', 
+        {
+          type: "debit",
+          date: date,
+          balance: "0.00",
+          value: "500.00"
+        }
+      )
+      date = Time.now.strftime('%d/%m/%Y')
+      allow(transaction).to receive(:new).with(hash_including(
+        :type => "credit",
+        :date => date,
+        :balance => "500.00",
+        :value => "500.00"
+      )).and_return(tx)
+      allow(transaction).to receive(:new).with(hash_including(
+        :type => "debit",
+        :date => date,
+        :balance => "0.00",
+        :value => "500.00"
+      )).and_return(tx2)
+      subject = Account.new(transaction_class: transaction)
+
       n = 500
       subject.deposit(n)
       subject.withdraw(n)

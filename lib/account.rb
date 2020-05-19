@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 require 'transaction'
-
 # this is the Account class, it tracks the balance
 class Account
   COLUMN_TITLES = 'date || credit || debit || balance'
   attr_reader :balance
-  def initialize
+  def initialize(transaction_class: Transaction)
     @balance = 0
     @transactions = []
+    @transaction_class = transaction_class
   end
 
   def deposit(num = '')
@@ -58,12 +58,8 @@ class Account
   def store_transaction(num)
     amount = format_number(num.abs)
     nice_balance = format_number(@balance)
-    if num.positive?
-      type = "credit"
-    else
-      type = "debit"
-    end
-    transaction = Transaction.new(type:type, date: date, balance: nice_balance, value: amount)
+    num.positive? ? type = "credit" : type = "debit"
+    transaction = @transaction_class.new(type:type, date: date, balance: nice_balance, value: amount)
     @transactions.push(transaction)
   end
 
