@@ -14,5 +14,9 @@ describe Transaction do
       tx = Transaction.new(type: "credit", date:"18/05/2020", balance: 100, value: 100)
       expect(tx.balance).to eq(100)
     end
+    it ' knows the deposit value when a deposit is made' do
+      tx = Transaction.new(type: "credit", date:"18/05/2020", balance: 100, value: 100)
+      expect(tx.value).to eq(100)
+    end
   end
 end
