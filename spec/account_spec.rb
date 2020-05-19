@@ -22,12 +22,14 @@ describe Account do
 
   describe 'statement details' do
     it ' should show a previously made deposit on the statement' do
+      subject.stub(:date) {"18/05/2020"}
       n = 500
       subject.deposit(n)
       expected_output = "date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00"
       expect(subject.print_statement).to eq(expected_output)
     end
     it ' should show a previously made withdrawal on the statement' do
+      subject.stub(:date) {"18/05/2020"}
       n = 500
       subject.deposit(n)
       subject.withdraw(n)
