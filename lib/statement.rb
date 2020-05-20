@@ -11,7 +11,11 @@ class Statement
     else
       lines = []
       for tx in @transactions do
+        if tx.type =='credit'
           lines.push("#{tx.date} || #{tx.value} ||  || #{tx.balance}")
+        else
+          lines.push("#{tx.date} ||  || #{tx.value} || #{tx.balance}")
+        end          
       end
       lines.push(COLUMN_TITLES)
       lines.reverse.join("\n")
@@ -19,3 +23,4 @@ class Statement
   end
   
 end
+
