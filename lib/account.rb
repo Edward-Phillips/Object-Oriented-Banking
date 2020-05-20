@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 require 'transaction'
+require 'statement'
 # this is the Account class, it tracks the balance
 class Account
   COLUMN_TITLES = 'date || credit || debit || balance'
   attr_reader :balance
-  def initialize(transaction_class: Transaction)
+  def initialize(transaction_class: Transaction, statement_class: Statement)
     @balance = 0
-    @transactions = []
+    @statement = statement_class.new
     @transaction_class = transaction_class
   end
 
@@ -26,16 +27,7 @@ class Account
   end
 
   def print_statement
-    statement_lines = []
-    for tx in @transactions do
-      if tx.type == "credit"
-        statement_lines.push("#{tx.date} || #{tx.value} ||  || #{tx.balance}")
-      else
-        statement_lines.push("#{tx.date} ||  || #{tx.value} || #{tx.balance}")
-      end
-    end
-    statement_lines.push(COLUMN_TITLES)
-    statement_lines.reverse.join("\n")
+    @statement.print_statement
   end
 
   private
@@ -61,7 +53,7 @@ class Account
     nice_balance = format_number(@balance)
     num.positive? ? type = "credit" : type = "debit"
     transaction = @transaction_class.new(type:type, date: date, balance: nice_balance, value: amount)
-    @transactions.push(transaction)
+    @statement.transactions.push(transaction)
   end
 
   def date
