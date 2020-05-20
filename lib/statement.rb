@@ -9,7 +9,13 @@ class Statement
     if @transactions.length == 0
       COLUMN_TITLES
     else
-      "date || credit || debit || balance\n20/05/2020 || 500.00 ||  || 500.00"
+      lines = []
+      for tx in @transactions do
+          lines.push("#{tx.date} || #{tx.value} ||  || #{tx.balance}")
+      end
+      lines.push(COLUMN_TITLES)
+      lines.reverse.join("\n")
     end
   end
+  
 end
