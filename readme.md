@@ -74,4 +74,4 @@ Class Structure:
 #### code coverage and style
 
 - my code coverage is currently 100%, which I feel has been delivered through tests for desired behaviour, not testing for the sake of it.
-- There are currently 4 rubocop issues, after much consideration I have decided to ignore these to favour readability over linting guidelines.
+- There are currently 4 rubocop issues, after much consideration I have decided to accept these to favour readability over linting guidelines.
