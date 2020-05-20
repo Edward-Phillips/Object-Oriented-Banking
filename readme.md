@@ -1,5 +1,10 @@
 ## Bank Transactions
-The intent of this project is to test drive a solution to the following problem while writing high quality code and following Object Oriented Design principles.
+#### Sections 
+[Intro](#Introduction) [Spec](#Specification) [Criteria](#Acceptance-criteria) [Approach](#Approach) [Documentation](#Documentation)
+
+
+### Introduction
+The intent of this project is to test drive a solution to the following Specification that meets the Acceptance Criteria while writing high quality code following Object Oriented Design principles.
 
 ## Specification
 [(test source)](https://github.com/makersacademy/course/blob/master/individual_challenges/bank_tech_test.md)
@@ -25,17 +30,45 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
-### Approach
+## Approach
 
-In approaching this project I decided to use [Trello](https://trello.com/b/gryo6RQX/code-quality-week) and [Google Sheets](https://docs.google.com/spreadsheets/d/15ZCla-0Q_DpdFfHUktD8q8yGbNkmqz66WVx6Bz6MVTM/edit#gid=0) as tools to track my progress. 
+### Tools
 
-<!--
-This section is a WIP and will be added to as functionality of the program is implemented
+In approaching this project I decided to use [Trello](https://trello.com/b/gryo6RQX/code-quality-week) and [Google Sheets](https://docs.google.com/spreadsheets/d/15ZCla-0Q_DpdFfHUktD8q8yGbNkmqz66WVx6Bz6MVTM/edit#gid=0) as tools to track my progress.
 
- #### using the program:
- - The program is structured as a class and can be interacted with using IRB
- - Commands:
+In terms of technical tools used to aid my development workflow I made use of: Rspec as my testing suite; Rubocop as my linting tool and Simplecov to monitor test coverage.
+
+### Design
+
+The simplest implementation of this project is structured as a monolithic class that is responsible for: deposits; withdrawals; keeping track of the balance AND printing the statement - several different responsiblities for one class, which is far from ideal.
+
+I decided that a preferable implementation would be to have 3 separate classes: one for handling the deposits/withdrawals as they happen; one for storing the information relating to each transaction and one for displaying the statement.
+
+Class Structure:
+
+[![Mermaid diagram of class structure](https://mermaid.ink/img/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gIEFjY291bnQgPC0tIFRyYW5zYWN0aW9uXG4gIGNsYXNzIEFjY291bnQge1xuICArU3RhdGVtZW50IHRyYW5zYWN0aW9uc1xuICArTnVtZXJpYyBCYWxhbmNlXG4gICtkZXBvc2l0KE51bWVyaWMpXG4gICt3aXRoZHJhdyhOdW1lcmljKVxuICB9XG4gIGNsYXNzIFRyYW5zYWN0aW9uIHtcbiAgK0RhdGUgZGF0ZVxuICArTnVtZXJpYyBiYWxhbmNlXG4gICtOdW1lcmljIHZhbHVlXG4gIH1cbiAgQWNjb3VudCA8LS0gU3RhdGVtZW50XG4gIGNsYXNzIFN0YXRlbWVudCB7XG4gICtBcnJheSB0cmFuc2FjdGlvbl9oaXN0b3J5XG4gICtwcmludF9zdGF0ZW1lbnQoKVxuICB9IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG4gIEFjY291bnQgPC0tIFRyYW5zYWN0aW9uXG4gIGNsYXNzIEFjY291bnQge1xuICArU3RhdGVtZW50IHRyYW5zYWN0aW9uc1xuICArTnVtZXJpYyBCYWxhbmNlXG4gICtkZXBvc2l0KE51bWVyaWMpXG4gICt3aXRoZHJhdyhOdW1lcmljKVxuICB9XG4gIGNsYXNzIFRyYW5zYWN0aW9uIHtcbiAgK0RhdGUgZGF0ZVxuICArTnVtZXJpYyBiYWxhbmNlXG4gICtOdW1lcmljIHZhbHVlXG4gIH1cbiAgQWNjb3VudCA8LS0gU3RhdGVtZW50XG4gIGNsYXNzIFN0YXRlbWVudCB7XG4gICtBcnJheSB0cmFuc2FjdGlvbl9oaXN0b3J5XG4gICtwcmludF9zdGF0ZW1lbnQoKVxuICB9IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+
+
+## Documentation
+
+### Installation
+#### required: Git CLI; Ruby installed; A REPL such as IRB or PRY
+- clone this repository to your local machine.
+- run 'bundle install' in your terminal
+
+### using the program:
+ The program is structured using three classes and can be interacted with using IRB or any other REPL 
+#### Commands:
  - account.deposit(): increases account balance by certain amount.
- - account.withdraw()
- -account.print_statement()
-  -->
+ - account.withdraw(): reduces account balance by a certain amount.
+ - account.print_statement(): prints the current statement in reverse chronological order.
+
+### edge cases
+ The edge cases covered:
+  - deposit/withdrawal inputs must be positive numbers with no more than 2 decimal places.
+  - withdrawal amounts may not exceed the current balance of the account.
+
+#### code coverage and style
+
+- my code coverage is currently 100%, which I feel has been delivered through tests for desired behaviour, not testing for the sake of it.
+- 
