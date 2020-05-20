@@ -52,7 +52,7 @@ Class Structure:
 ## Documentation
 
 ### in action:
-[photo of program running in the terminal](https://imgur.com/aJ6r4Om)
+[photo of program running in the terminal](https://i.imgur.com/aJ6r4Om.png)
 
 ### Installation
 #### required: Git CLI; Ruby installed; A REPL such as IRB or PRY
