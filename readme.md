@@ -51,6 +51,9 @@ Class Structure:
 
 ## Documentation
 
+### in action:
+[![photo of program running in the terminal](https://imgur.com/aJ6r4Om)]
+
 ### Installation
 #### required: Git CLI; Ruby installed; A REPL such as IRB or PRY
 - clone this repository to your local machine.
@@ -71,4 +74,4 @@ Class Structure:
 #### code coverage and style
 
 - my code coverage is currently 100%, which I feel has been delivered through tests for desired behaviour, not testing for the sake of it.
-- 
+- There are currently 4 rubocop issues, after much consideration I have decided to ignore these to favour readability over linting guidelines.

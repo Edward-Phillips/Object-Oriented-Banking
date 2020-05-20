@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'transaction'
-require 'statement'
+require_relative 'transaction'
+require_relative 'statement'
 
 # this is the Account class, it tracks the balance
 class Account
