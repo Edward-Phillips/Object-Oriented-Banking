@@ -44,9 +44,8 @@ class Account
     raise 'Error: Invalid request' if decimals(num) > 2
   end
 
-  def decimals(num)
+  def decimals(number)
     decimals = 0
-    number = num
     while number != number.to_i
       decimals += 1
       number *= 10

@@ -10,7 +10,10 @@ describe 'basic account function' do
     @stment = instance_double('Statement')
     allow(@stment).to receive(:transactions).and_return([])
     allow(@statement).to receive(:new).with(any_args).and_return(@stment)
-    @acc = Account.new(transaction_class: @transaction, statement_class: @statement)
+    @acc = Account.new(
+      transaction_class: @transaction,
+      statement_class: @statement
+    )
     @n = 500
   end
   it ' should have an account balance' do
