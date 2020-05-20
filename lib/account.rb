@@ -26,7 +26,7 @@ class Account
   end
 
   def print_statement
-    statement_lines = [COLUMN_TITLES]
+    statement_lines = []
     for tx in @transactions do
       if tx.type == "credit"
         statement_lines.push("#{tx.date} || #{tx.value} ||  || #{tx.balance}")
@@ -34,7 +34,8 @@ class Account
         statement_lines.push("#{tx.date} ||  || #{tx.value} || #{tx.balance}")
       end
     end
-    statement_lines.join("\n")
+    statement_lines.push(COLUMN_TITLES)
+    statement_lines.reverse.join("\n")
   end
 
   private
