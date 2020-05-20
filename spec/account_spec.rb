@@ -9,7 +9,11 @@ describe Account do
     it ' should have a deposit method that increases the balance' do
       transaction = class_double('Transaction')
       allow(transaction).to receive(:new).with(any_args)
-      subject = Account.new(transaction_class: transaction)
+      statement = class_double('Statement')
+      stment = instance_double('Statement')
+      allow(stment).to receive(:transactions).and_return([])
+      allow(statement).to receive(:new).with(any_args).and_return(stment)
+      subject = Account.new(transaction_class: transaction, statement_class: statement)
 
       n = 500
       expect { subject.deposit(n) }.to change { subject.balance }.from(0).to(n)
@@ -17,93 +21,36 @@ describe Account do
     it ' should have a withdraw method that reduces the balance' do
       transaction = class_double('Transaction')
       allow(transaction).to receive(:new).with(any_args)
-      subject = Account.new(transaction_class: transaction)
+      statement = class_double('Statement')
+      stment = instance_double('Statement')
+      allow(stment).to receive(:transactions).and_return([])
+      allow(statement).to receive(:new).with(any_args).and_return(stment)
+      subject = Account.new(transaction_class: transaction, statement_class: statement)
 
       n = 500
       subject.deposit(n)
       expect { subject.withdraw(n) }.to change { subject.balance }.from(n).to(0)
     end
     it 'should be able to produce a statement' do
-      expected_output = 'date || credit || debit || balance'
-      expect(subject.print_statement).to eq(expected_output)
-    end
-  end
+      transaction = class_double('Transaction')
+      allow(transaction).to receive(:new).with(any_args)
+      statement = class_double('Statement')
+      stment = instance_double('Statement')
+      allow(stment).to receive(:print_statement)
+      allow(statement).to receive(:new).with(any_args).and_return(stment)
+      subject = Account.new(transaction_class: transaction, statement_class: statement)
 
-  describe 'statement details' do
-    it ' should show a previously made deposit on the statement' do
+      expect(stment).to receive(:print_statement)
       
-      transaction = class_double('Transaction')
-      date = Time.now.strftime('%d/%m/%Y')
-      tx = instance_double(
-        'Transaction', 
-        {
-          type: "credit",
-          date: date,
-          balance: "500.00",
-          value: "500.00"
-        }
-      )
-      allow(transaction).to receive(:new).with({
-        :type => "credit",
-        :date => date,
-        :balance => "500.00",
-        :value => "500.00"
-      }).and_return(tx)
-      subject = Account.new(transaction_class: transaction)
-
-      n = 500
-      subject.deposit(n)
-      expected_output = "date || credit || debit || balance\n#{date} || 500.00 ||  || 500.00"
-      expect(subject.print_statement).to eq(expected_output)
-    end
-    it ' should show a previously made withdrawal on the statement' do
-      allow(subject).to receive(:date) {"18/05/2020"}
-      transaction = class_double('Transaction')
-      date = "18/05/2020"
-      tx = instance_double(
-        'Transaction', 
-        {
-          type: "credit",
-          date: date,
-          balance: "500.00",
-          value: "500.00"
-        }
-      )
-      tx2 = instance_double(
-        'Transaction', 
-        {
-          type: "debit",
-          date: date,
-          balance: "0.00",
-          value: "500.00"
-        }
-      )
-      date = Time.now.strftime('%d/%m/%Y')
-      allow(transaction).to receive(:new).with(hash_including(
-        :type => "credit",
-        :date => date,
-        :balance => "500.00",
-        :value => "500.00"
-      )).and_return(tx)
-      allow(transaction).to receive(:new).with(hash_including(
-        :type => "debit",
-        :date => date,
-        :balance => "0.00",
-        :value => "500.00"
-      )).and_return(tx2)
-      subject = Account.new(transaction_class: transaction)
-
-      n = 500
-      subject.deposit(n)
-      subject.withdraw(n)
-      expected_output = "date || credit || debit || balance\n18/05/2020 ||  || 500.00 || 0.00\n18/05/2020 || 500.00 ||  || 500.00"
-      expect(subject.print_statement).to eq(expected_output)
+      subject.print_statement
     end
   end
+
   describe ' edge cases' do
     it ' should not allow non-numeric deposits' do
+      bad_input = 'LOADSAMONEY'
       error_msg = 'Error: Invalid request'
-      expect { subject.deposit('LOADSAMONEY') }.to raise_error(error_msg)
+      expect { subject.deposit(bad_input) }.to raise_error(error_msg)
     end
     it ' should not allow negative deposits' do
       n = -500
