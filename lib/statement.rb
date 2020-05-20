@@ -17,16 +17,22 @@ class Statement
     lines.reverse.join("\n")
   end
 
-private
+  private
+
   def transaction_line(transaction)
     balance = format_num(transaction.balance)
     value = format_num(transaction.value)
-    credit = "#{transaction.date} || #{value} ||  || #{balance}"
-    debit = "#{transaction.date} ||  || #{value} || #{balance}"
+    date = format_date(transaction.date)
+    credit = "#{date} || #{value} ||  || #{balance}"
+    debit = "#{date} ||  || #{value} || #{balance}"
     transaction.type == 'credit' ? credit : debit
   end
 
   def format_num(num)
     format('%.2f', num)
+  end
+
+  def format_date(time)
+    time.strftime('%d/%m/%Y')
   end
 end

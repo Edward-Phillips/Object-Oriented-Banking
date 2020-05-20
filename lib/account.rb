@@ -6,10 +6,15 @@ require_relative 'statement'
 # this is the Account class, it tracks the balance
 class Account
   attr_reader :balance
-  def initialize(transaction_class: Transaction, statement_class: Statement)
+  def initialize(
+    transaction_class: Transaction,
+    statement_class: Statement,
+    time: Time
+  )
     @balance = 0
     @statement = statement_class.new
     @transaction_class = transaction_class
+    @time = time
   end
 
   def deposit(num = '')
@@ -52,14 +57,10 @@ class Account
   def store_transaction(num, type)
     transaction = @transaction_class.new(
       type: type,
-      date: date,
+      date: @time.now,
       balance: @balance,
       value: num.abs
     )
     @statement.transactions.push(transaction)
-  end
-
-  def date
-    Time.now.strftime('%d/%m/%Y')
   end
 end
