@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'statement'
 
 describe Statement do
@@ -10,29 +12,31 @@ describe Statement do
   it 'prints a deposit transaction' do
     date = Time.now.strftime('%d/%m/%Y')
     tx = instance_double(
-      'Transaction', 
+      'Transaction',
       {
-        type: "credit",
+        type: 'credit',
         date: date,
-        balance: "500.00",
-        value: "500.00"
+        balance: '500.00',
+        value: '500.00'
       }
     )
+    res = "date || credit || debit || balance\n#{date} || 500.00 ||  || 500.00"
     subject.transactions.push(tx)
-    expect(subject.print_statement).to eq("date || credit || debit || balance\n#{date} || 500.00 ||  || 500.00")
+    expect(subject.print_statement).to eq(res)
   end
   it ' prints a witdhrawal transaction' do
     date = Time.now.strftime('%d/%m/%Y')
     tx = instance_double(
-      'Transaction', 
+      'Transaction',
       {
-        type: "debit",
+        type: 'debit',
         date: date,
-        balance: "500.00",
-        value: "500.00"
+        balance: '500.00',
+        value: '500.00'
       }
     )
+    res = "date || credit || debit || balance\n#{date} ||  || 500.00 || 500.00"
     subject.transactions.push(tx)
-    expect(subject.print_statement).to eq("date || credit || debit || balance\n#{date} ||  || 500.00 || 500.00")
+    expect(subject.print_statement).to eq(res)
   end
 end
