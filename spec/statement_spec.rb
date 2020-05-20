@@ -10,12 +10,13 @@ describe Statement do
     expect(subject.print_statement).to eq('date || credit || debit || balance')
   end
   it 'prints a deposit transaction' do
-    date = Time.now.strftime('%d/%m/%Y')
+    time = Time.now
+    date = time.strftime('%d/%m/%Y')
     tx = instance_double(
       'Transaction',
       {
         type: 'credit',
-        date: date,
+        date: time,
         balance: '500.00',
         value: '500.00'
       }
@@ -25,12 +26,13 @@ describe Statement do
     expect(subject.print_statement).to eq(res)
   end
   it ' prints a witdhrawal transaction' do
-    date = Time.now.strftime('%d/%m/%Y')
+    time = Time.now
+    date = time.strftime('%d/%m/%Y')
     tx = instance_double(
       'Transaction',
       {
         type: 'debit',
-        date: date,
+        date: time,
         balance: '500.00',
         value: '500.00'
       }
