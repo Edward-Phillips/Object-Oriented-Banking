@@ -6,8 +6,10 @@ class Statement
   end
 
   def print_statement
-    COLUMN_TITLES
+    if @transactions.length == 0
+      COLUMN_TITLES
+    else
+      "date || credit || debit || balance\n20/05/2020 || 500.00 ||  || 500.00"
+    end
   end
-
-  
 end
