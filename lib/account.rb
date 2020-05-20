@@ -16,7 +16,7 @@ class Account
     validate_input(num)
 
     @balance += num
-    store_transaction(num)
+    store_transaction(num, 'credit')
   end
 
   def withdraw(num = '')
@@ -24,7 +24,7 @@ class Account
     raise 'Error: Insufficent funds' if num > @balance
 
     @balance -= num
-    store_transaction(-num)
+    store_transaction(-num, 'debit')
   end
 
   def print_statement
@@ -49,24 +49,17 @@ class Account
     decimals
   end
 
-  def store_transaction(num)
-    amount = format_number(num.abs)
-    nice_balance = format_number(@balance)
-    type = num.positive? ? 'credit' : 'debit'
+  def store_transaction(num, type)
     transaction = @transaction_class.new(
       type: type,
       date: date,
-      balance: nice_balance,
-      value: amount
+      balance: @balance,
+      value: num.abs
     )
     @statement.transactions.push(transaction)
   end
 
   def date
     Time.now.strftime('%d/%m/%Y')
-  end
-
-  def format_number(num)
-    format('%.2f', num)
   end
 end

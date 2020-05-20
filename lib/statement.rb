@@ -10,12 +10,23 @@ class Statement
 
   def print_statement
     lines = []
-    @transactions.each do |tx|
-      credit = "#{tx.date} || #{tx.value} ||  || #{tx.balance}"
-      debit = "#{tx.date} ||  || #{tx.value} || #{tx.balance}"
-      lines.push(tx.type == 'credit' ? credit : debit)
+    @transactions.each do |transaction|
+      lines.push(transaction_line(transaction))
     end
     lines.push(COLUMN_TITLES)
     lines.reverse.join("\n")
+  end
+
+private
+  def transaction_line(transaction)
+    balance = format_num(transaction.balance)
+    value = format_num(transaction.value)
+    credit = "#{transaction.date} || #{value} ||  || #{balance}"
+    debit = "#{transaction.date} ||  || #{value} || #{balance}"
+    transaction.type == 'credit' ? credit : debit
+  end
+
+  def format_num(num)
+    format('%.2f', num)
   end
 end
