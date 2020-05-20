@@ -21,4 +21,18 @@ describe Statement do
     subject.transactions.push(tx)
     expect(subject.print_statement).to eq("date || credit || debit || balance\n#{date} || 500.00 ||  || 500.00")
   end
+  it ' prints a witdhrawal transaction' do
+    date = Time.now.strftime('%d/%m/%Y')
+    tx = instance_double(
+      'Transaction', 
+      {
+        type: "debit",
+        date: date,
+        balance: "500.00",
+        value: "500.00"
+      }
+    )
+    subject.transactions.push(tx)
+    expect(subject.print_statement).to eq("date || credit || debit || balance\n#{date} ||  || 500.00 || 500.00")
+  end
 end
