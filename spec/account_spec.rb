@@ -96,7 +96,7 @@ describe Account do
       n = 500
       subject.deposit(n)
       subject.withdraw(n)
-      expected_output = "date || credit || debit || balance\n18/05/2020 || 500.00 ||  || 500.00\n18/05/2020 ||  || 500.00 || 0.00"
+      expected_output = "date || credit || debit || balance\n18/05/2020 ||  || 500.00 || 0.00\n18/05/2020 || 500.00 ||  || 500.00"
       expect(subject.print_statement).to eq(expected_output)
     end
   end
