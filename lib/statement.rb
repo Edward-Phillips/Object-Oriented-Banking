@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Statement
-  attr_reader :transactions
   COLUMN_TITLES = 'date || credit || debit || balance'
   def print_statement(transaction_history = [])
     lines = transaction_history.map do |transaction|
