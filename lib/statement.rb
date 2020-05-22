@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-# this is the statement class, it stores and prints transactions
 class Statement
   attr_reader :transactions
   COLUMN_TITLES = 'date || credit || debit || balance'
-  def print_statement(transaction_history=[])
+  def print_statement(transaction_history = [])
     lines = transaction_history.map do |transaction|
       transaction_line(transaction)
     end
@@ -13,7 +12,7 @@ class Statement
   end
 
   private
-  
+
   def transaction_line(transaction)
     credit, debit = format_transaction(transaction)
     transaction.type == 'credit' ? credit : debit
@@ -23,14 +22,14 @@ class Statement
     balance, value, date = format_values(transaction)
     credit = "#{date} || #{value} ||  || #{balance}"
     debit = "#{date} ||  || #{value} || #{balance}"
-    return credit, debit
+    [credit, debit]
   end
 
   def format_values(transaction)
     balance = format_number(transaction.balance)
     value = format_number(transaction.value)
     date = format_date(transaction.date)
-    return balance, value, date
+    [balance, value, date]
   end
 
   def format_number(number)
