@@ -8,9 +8,14 @@ describe 'depositing, withdrawing and printing statement' do
     date = Time.now.strftime('%d/%m/%Y')
     account.deposit(50)
     account.withdraw(10)
-    res = "date || credit || debit || balance
-#{date} ||  || 10.00 || 40.00
-#{date} || 50.00 ||  || 50.00"
-    expect(account.print_statement).to eq(res)
+    expected_headers = 'date || credit || debit || balance'
+    statement_line_one = "#{date} ||  || 10.00 || 40.00"
+    statement_line_two = "#{date} || 50.00 ||  || 50.00"
+    result = [
+      expected_headers,
+      statement_line_one,
+      statement_line_two
+    ].join("\n")
+    expect { account.print_statement }.to output(result).to_stdout
   end
 end
