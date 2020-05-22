@@ -21,7 +21,7 @@ describe Statement do
     )
     headers = 'date || credit || debit || balance'
     line_one = "#{date} || 500.00 ||  || 500.00"
-    result = [headers,line_one].join("\n")
+    result = [headers, line_one].join("\n")
 
     transaction_array = [transaction]
     expect(subject.print_statement(transaction_array)).to eq(result)
@@ -40,7 +40,7 @@ describe Statement do
     )
     headers = 'date || credit || debit || balance'
     line_one = "#{date} ||  || 500.00 || 500.00"
-    result = [headers,line_one].join("\n")
+    result = [headers, line_one].join("\n")
     transaction_array = [transaction]
     expect(subject.print_statement(transaction_array)).to eq(result)
   end
